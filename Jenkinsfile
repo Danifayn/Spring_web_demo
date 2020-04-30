@@ -31,7 +31,7 @@ pipeline {
 		steps{
 	        retry(3){
                     sh './health-check.sh 8081'
-		    sleep 1			    
+		    sleep 10			    
 			}
                 }
 }
