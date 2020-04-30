@@ -1,7 +1,8 @@
 pipeline {
-
-    agent {
-
+    agent none
+	stages{
+	stage('Dockerize'){
+	agent
         docker {
 
             image 'maven:3-alpine' 
@@ -10,29 +11,23 @@ pipeline {
 
         }
 
-    }
-
-    stages {
-
-        stage('Build') { 
-
             steps {
 
                 sh 'mvn install' 
 
             }
 
-        }
+}
+
 	stage("Run"){
+	   agent any
 	   steps {
-		sh 'java -jar ./target/demo-0.0.1-SNAPSHOT.jar'
-
-
-
+		sh 'docker build -t stuff .'
+		sh 'docker run -d stuff'
            
 }
 	}
 
-    }
 
+}
 }
