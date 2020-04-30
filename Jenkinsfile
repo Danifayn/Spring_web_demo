@@ -19,15 +19,19 @@ pipeline {
 }
 
 	stage("Run"){
-	   agent any
+	   agent{
+		label 'master'
+}
 	   steps {
 		sh 'docker build -t stuff .'
 		sh 'docker run -d --rm -p 8081:8081 stuff'
            
 }
 	}
-	stage("Check Health"){
-		agent any
+	stage("Health check"){
+		agent{
+			label 'master'
+		}
 		steps{
 	        retry(3){
 		    sleep(time:5,unit:"SECONDS")
