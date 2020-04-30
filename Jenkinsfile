@@ -27,6 +27,16 @@ pipeline {
            
 }
 	}
+	Stage("Check Health"){
+		agent any
+		steps{
+	        retry(3){
+                    sh './health-check.sh'
+		    sleep 1			    
+			}
+                }
+}
+	
 
 
 }
