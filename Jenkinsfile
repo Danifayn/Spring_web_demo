@@ -14,7 +14,6 @@ pipeline {
             steps {
 
                 sh 'mvn install' 
-		sh 'docker build -t stuff .'
             }
 
 }
@@ -22,6 +21,7 @@ pipeline {
 	stage("Run"){
 	   agent any
 	   steps {
+		sh 'docker build -t stuff .'
 		sh 'docker run -d --rm -p 8081:8081 stuff'
            
 }
