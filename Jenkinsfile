@@ -33,8 +33,9 @@ pipeline {
 		    sleep(time:3,unit:"SECONDS")
                     sh './health-check.sh 8081'
 			}
-                }
+	
 		ssh root@localhost -p 32768
+                }
 }
 	
 
