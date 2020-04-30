@@ -37,6 +37,14 @@ pipeline {
 		ssh root@localhost -p 32768
                 }
 }
+	stage("prod"){
+	    agent{
+		label 'slave'
+		}
+	steps{
+	sh "ls -l"
+}
+}
 	
 
 
