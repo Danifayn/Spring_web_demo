@@ -30,7 +30,7 @@ pipeline {
 		agent any
 		steps{
 	        retry(3){
-		    sleep(time:2,unit:"SECONDS")
+		    sleep(time:3,unit:"SECONDS")
                     sh './health-check.sh 8081'
 			}
                 }
