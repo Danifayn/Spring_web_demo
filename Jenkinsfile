@@ -27,7 +27,7 @@ pipeline {
            
 }
 	}
-	Stage("Check Health"){
+	stage("Check Health"){
 		agent any
 		steps{
 	        retry(3){
