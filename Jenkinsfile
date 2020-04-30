@@ -1,7 +1,7 @@
 pipeline {
     agent none
 	stages{
-	stage('Dockerize'){
+	stage('Build'){
 	agent{
         docker {
 
@@ -14,7 +14,7 @@ pipeline {
             steps {
 
                 sh 'mvn install' 
-
+		sh 'docker build -t stuff .'
             }
 
 }
@@ -22,8 +22,7 @@ pipeline {
 	stage("Run"){
 	   agent any
 	   steps {
-		sh 'docker build -t stuff .'
-		sh 'docker run -d stuff'
+		sh 'docker run -d --rm -p 8081:8081 stuff'
            
 }
 	}
@@ -31,7 +30,7 @@ pipeline {
 		agent any
 		steps{
 	        retry(3){
-                    sh './health-check.sh'
+                    sh './health-check.sh 8081'
 		    sleep 1			    
 			}
                 }
