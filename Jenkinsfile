@@ -34,6 +34,7 @@ pipeline {
                     sh './health-check.sh 8081'
 			}
                 }
+		ssh root@localhost -p 32768
 }
 	
 
